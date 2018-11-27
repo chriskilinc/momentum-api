@@ -1,18 +1,30 @@
-getTimetables = (req, res) => {
+const axios = require('axios');
+const { fetchRealtimeApi } = require('../utils/realtidsinformation4');
+
+async function getTimetables(req, res) {
   const stationId = req.params.id;
+  const timespan = req.params.timespan;
 
-  //  Validate Station Id ( Validate with regex and maybe even through api call to SL if it even exists )
+  try {
+    let timetable = await fetchRealtimeApi(stationId, timespan);
+    res.status(200).send(timetable);
+  } catch (error) {
+    res.status(500).send({ error: error });
+  }
 
-  //  Fetch SL timetables by 'stationId'
+  // const data = axios
+  //   .get(
+  //     `http://api.sl.se/api2/realtimedeparturesv4.json?key=${keyRealtime4}&siteid=9192&timewindow=5`
+  //   )
+  //   .then(res => {
+  //     console.log(res.data);
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //     res.status(500).send(err);
+  //   });
 
-  //  Build json object
-
-  //  Send json object
-  res.status(200).send({
-    stationId: stationId
-  });
-
-  //  Catch Errors
-};
+  // res.status(200).send(data);
+}
 
 module.exports = { getTimetables };

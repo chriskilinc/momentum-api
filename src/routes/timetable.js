@@ -3,9 +3,9 @@ const timetableController = require('../controllers/timetableController');
 
 router.get('/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify('/api/timetable/:id'));
+  res.send(JSON.stringify('/api/timetable/:id/:timespan'));
 });
 
-router.get('/:id', timetableController.getTimetables);
+router.get('/:id/:timespan', timetableController.getTimetables);
 
 module.exports = router;
