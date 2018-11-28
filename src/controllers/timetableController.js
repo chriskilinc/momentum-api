@@ -2,29 +2,28 @@ const axios = require('axios');
 const { fetchRealtimeApi } = require('../utils/realtidsinformation4');
 
 async function getTimetables(req, res) {
-  const stationId = req.params.id;
-  const timespan = req.params.timespan;
+  const stationId = req.params.id ? req.params.id : '9731';
+  const timespan = req.params.timespan ? req.params.timespan : '30';
 
   try {
     let timetable = await fetchRealtimeApi(stationId, timespan);
-    res.status(200).send(timetable);
+
+    let data = {
+      meta: {
+        stationId: stationId,
+        timespan: timespan,
+        fetched: new Date(Date.now())
+      },
+      timetable: null
+    };
+
+    if (timetable) {
+      data.timetable = timetable;
+    }
+    res.status(200).send(data);
   } catch (error) {
     res.status(500).send({ error: error });
   }
-
-  // const data = axios
-  //   .get(
-  //     `http://api.sl.se/api2/realtimedeparturesv4.json?key=${keyRealtime4}&siteid=9192&timewindow=5`
-  //   )
-  //   .then(res => {
-  //     console.log(res.data);
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //     res.status(500).send(err);
-  //   });
-
-  // res.status(200).send(data);
 }
 
 module.exports = { getTimetables };
