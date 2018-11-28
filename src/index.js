@@ -13,6 +13,6 @@ app.use('/', defaultRoute);
 app.use('/api', apiRoute);
 
 //  Timetable Route
-app.use('/api/timetable', timetableRoute);
+app.use('/api/v1/timetable', timetableRoute);
 
 app.listen(port, () => console.log(`Listening on port ${port}...`));

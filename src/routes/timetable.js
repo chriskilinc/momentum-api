@@ -3,7 +3,7 @@ const timetableController = require('../controllers/timetableController');
 
 router.get('/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify('/api/timetable/:id/:timespan'));
+  res.send(JSON.stringify('/api/v1/timetable/:stationId/:timespan'));
 });
 
 router.get('/:id/:timespan', timetableController.getTimetables);
