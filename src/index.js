@@ -6,6 +6,15 @@ const defaultRoute = require('./routes/default');
 const apiRoute = require('./routes/api');
 const timetableRoute = require('./routes/timetable');
 
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
+
 //  Default Route
 app.use('/', defaultRoute);
 
