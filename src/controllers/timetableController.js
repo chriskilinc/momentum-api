@@ -12,13 +12,15 @@ async function getTimetables(req, res) {
       meta: {
         stationId: stationId,
         timespan: timespan,
-        fetched: new Date(Date.now())
+        fetched: new Date(Date.now()),
+        updatedData: new Date(Date.now())
       },
       timetable: null
     };
 
     if (timetable) {
       data.timetable = timetable;
+      data.meta.updatedData = timetable.LatestUpdate;
     }
     res.status(200).send(data);
   } catch (error) {
