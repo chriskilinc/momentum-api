@@ -1,13 +1,14 @@
 const axios = require('axios');
-const { keyRealtime4 } = require('../config/keys');
+require('dotenv').config();
+const keyRealtime4 = process.env.APIKEYRT4;
 
 function fetchRealtimeApi(stationId, timespan) {
   try {
     const url = `http://api.sl.se/api2/realtimedeparturesv4.json?key=${keyRealtime4}&siteid=${stationId}&timewindow=${timespan}`;
     return axios.get(url).then(res => {
-      console.log(res.data);
+      // console.log(res.data);
+      console.log(`Fetching api id: ${stationId}, timespan: ${timespan} `);
       res.data.ResponseData.Message = res.data.Message;
-
       return res.data.ResponseData;
     });
   } catch (error) {
