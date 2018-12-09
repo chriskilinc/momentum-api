@@ -24,4 +24,4 @@ app.use('/api', apiRoute);
 //  Timetable Route
 app.use('/api/v1/timetable', timetableRoute);
 
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+app.listen(port, () => console.log(`Listening on port ${port}....`));
