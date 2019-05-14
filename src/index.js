@@ -1,4 +1,5 @@
-const port = process.env.PORT || 8081; //  Configures the application PORT to either the current enviorments port OR if enviorment port is not set, port '3000'
+//const port = process.env.PORT || 8081; //  Configures the application PORT to either the current enviorments port OR if enviorment port is not set, port '3000'
+const port = 8080;
 const express = require('express');
 const app = express();
 
