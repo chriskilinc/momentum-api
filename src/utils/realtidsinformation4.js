@@ -11,8 +11,12 @@ function fetchRealtimeApi(stationId, timespan) {
         res.data.ResponseData.Message = res.data.Message;
       }
       return res.data.ResponseData;
+    }).catch((error) => {
+      console.log(error);
+      throw new Error("Could Not Fetch 'Realtidsinformation 4'");
     });
   } catch (error) {
+    console.log(error);
     throw new Error("Could Not Fetch 'Realtidsinformation 4'");
   }
 }
