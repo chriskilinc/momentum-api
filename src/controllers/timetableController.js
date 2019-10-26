@@ -1,13 +1,13 @@
-const axios = require('axios');
-const { fetchRealtimeApi } = require('../utils/realtidsinformation4');
+const { fetchRealtimeApi } = require("../utils/realtidsinformation4");
 
 async function getTimetables(req, res) {
-  const stationId = req.params.id ? req.params.id : '9731';
-  const timespan = req.params.timespan ? req.params.timespan : '30';
+  const stationId = req.params.id || "9731";
+  const timespan = req.params.timespan || "30";
 
   try {
     let timetable = await fetchRealtimeApi(stationId, timespan);
 
+    //  Build meta data
     let data = {
       meta: {
         stationId: stationId,
